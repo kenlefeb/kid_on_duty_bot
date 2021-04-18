@@ -1,0 +1,3 @@
+python-dotenv
+icecream
+python-telegram-bot

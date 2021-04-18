@@ -1,0 +1,8 @@
+{
+    "name": "Emily",
+    "pronoun": {
+        "subjective": "she",
+        "objective": "her"
+    },
+    "is_even": true
+}

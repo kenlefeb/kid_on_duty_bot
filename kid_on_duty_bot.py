@@ -1,10 +1,12 @@
+import settings
+import os
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import json
 from datetime import datetime
 import pytz
 from icecream import ic
 
-_version = "2.3"
+_version = "2.4"
 STATE_FILE = "/home/kenlefeb/kid_on_duty_bot/state.json"
 PEOPLE_FILE = "/home/kenlefeb/kid_on_duty_bot/people.json"
 
@@ -133,13 +135,15 @@ def version(update, context):
 
 def main():
     print(f'\n\n{__file__} v{_version}')
+
+    settings.load_environment()
     hour = get_hour()
     ic(hour)
-    TOKEN = "1737814729:AAFPHgsr-Kz0iVUZZawG97EeeqZ5OEgrkXo"
 
     # create the updater, that will automatically create also a dispatcher and a queue to
     # make them dialoge
-    updater = Updater(TOKEN, use_context=True)
+    TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
+    updater = Updater(TELEGRAM_TOKEN, use_context=True)
     dispatcher = updater.dispatcher
 
     # add handlers for start and help commands
